@@ -2,7 +2,7 @@
   "schemaVersion": "hopper.pattern-implementation-index.v1",
   "productId": "hopper.pattern-implementations",
   "version": "0.1.0",
-  "commit": "80d73dcbac82b446c139b93e7905bab57ccd7e1c",
+  "commit": "bb2957edcd6c81b2e740aa4eff26dd4a23033237",
   "implementations": [
     {
       "schemaVersion": "hopper.pattern-implementation-release.v1",
@@ -23,7 +23,7 @@
       "repository": {
         "provider": "github",
         "url": "https://github.com/hopperlabs-ai-dev/hopper-pattern-implementations",
-        "commit": "80d73dcbac82b446c139b93e7905bab57ccd7e1c",
+        "commit": "bb2957edcd6c81b2e740aa4eff26dd4a23033237",
         "subdirectory": "sources/code-as-agent-harness",
         "license": "Apache-2.0"
       },
@@ -68,7 +68,7 @@
       "repository": {
         "provider": "github",
         "url": "https://github.com/hopperlabs-ai-dev/hopper-pattern-implementations",
-        "commit": "80d73dcbac82b446c139b93e7905bab57ccd7e1c",
+        "commit": "bb2957edcd6c81b2e740aa4eff26dd4a23033237",
         "subdirectory": "patterns/executable-stateful-harness",
         "license": "Apache-2.0"
       },
@@ -98,5 +98,5 @@
       ]
     }
   ],
-  "digest": "sha256:8fbc2714f6ce4a7c024de8d6a30731e2d831f64fc99d40e6a0f58392766fb498"
+  "digest": "sha256:4b886b07e91ddd6f37298a26ff30dc426711b2132e0508f6c87982a48ceae545"
 }
