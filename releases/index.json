@@ -2,7 +2,7 @@
   "schemaVersion": "hopper.pattern-implementation-index.v1",
   "productId": "hopper.pattern-implementations",
   "version": "0.1.0",
-  "commit": "bb2957edcd6c81b2e740aa4eff26dd4a23033237",
+  "commit": "a2b4221815b35cfceaef161c6cee20a4a363e08a",
   "implementations": [
     {
       "schemaVersion": "hopper.pattern-implementation-release.v1",
@@ -23,7 +23,7 @@
       "repository": {
         "provider": "github",
         "url": "https://github.com/hopperlabs-ai-dev/hopper-pattern-implementations",
-        "commit": "bb2957edcd6c81b2e740aa4eff26dd4a23033237",
+        "commit": "a2b4221815b35cfceaef161c6cee20a4a363e08a",
         "subdirectory": "sources/code-as-agent-harness",
         "license": "Apache-2.0"
       },
@@ -68,7 +68,7 @@
       "repository": {
         "provider": "github",
         "url": "https://github.com/hopperlabs-ai-dev/hopper-pattern-implementations",
-        "commit": "bb2957edcd6c81b2e740aa4eff26dd4a23033237",
+        "commit": "a2b4221815b35cfceaef161c6cee20a4a363e08a",
         "subdirectory": "patterns/executable-stateful-harness",
         "license": "Apache-2.0"
       },
@@ -96,7 +96,77 @@
         "The in-memory reference illustrates contracts; production durability requires an admitted event store.",
         "The reference deliberately denies arbitrary code and network execution."
       ]
+    },
+    {
+      "schemaVersion": "hopper.pattern-implementation-release.v1",
+      "implementationId": "implementation:programmatic-tool-orchestration-poc",
+      "name": "Programmatic tool orchestration — POC",
+      "primarySubject": {
+        "kind": "pattern",
+        "id": "pattern:programmatic-tool-orchestration"
+      },
+      "relatedSubjects": [],
+      "level": "poc",
+      "status": "qualified",
+      "repository": {
+        "provider": "github",
+        "url": "https://github.com/hopperlabs-ai-dev/hopper-pattern-implementations",
+        "commit": "a2b4221815b35cfceaef161c6cee20a4a363e08a",
+        "subdirectory": "patterns/programmatic-tool-orchestration",
+        "license": "Apache-2.0"
+      },
+      "entrypoints": {
+        "demo": "poc/run.mjs"
+      },
+      "artifacts": {},
+      "capabilities": [
+        "bounded discovery",
+        "typed plans",
+        "step references",
+        "receipts"
+      ],
+      "verification": [
+        "npm run qualify"
+      ],
+      "limitations": [
+        "Uses deterministic example operations rather than production domain tools."
+      ]
+    },
+    {
+      "schemaVersion": "hopper.pattern-implementation-release.v1",
+      "implementationId": "implementation:programmatic-tool-orchestration-reference",
+      "name": "Programmatic tool orchestration — reference",
+      "primarySubject": {
+        "kind": "pattern",
+        "id": "pattern:programmatic-tool-orchestration"
+      },
+      "relatedSubjects": [],
+      "level": "reference",
+      "status": "qualified",
+      "repository": {
+        "provider": "github",
+        "url": "https://github.com/hopperlabs-ai-dev/hopper-pattern-implementations",
+        "commit": "a2b4221815b35cfceaef161c6cee20a4a363e08a",
+        "subdirectory": "patterns/programmatic-tool-orchestration",
+        "license": "Apache-2.0"
+      },
+      "entrypoints": {
+        "server": "reference/server.mjs"
+      },
+      "artifacts": {},
+      "capabilities": [
+        "authorization before execution",
+        "bounded HTTP input",
+        "typed multi-step plans",
+        "receipts"
+      ],
+      "verification": [
+        "npm run qualify"
+      ],
+      "limitations": [
+        "Production deployment still requires process isolation and an admitted operation catalog."
+      ]
     }
   ],
-  "digest": "sha256:4b886b07e91ddd6f37298a26ff30dc426711b2132e0508f6c87982a48ceae545"
+  "digest": "sha256:60094bf5a185244dae3f17b99c805bd1fb72cebdf57f707ff002090ce223a601"
 }
