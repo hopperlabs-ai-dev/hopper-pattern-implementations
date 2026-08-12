@@ -1,0 +1,16 @@
+{
+  "name": "@hopperlabs/pattern-implementations",
+  "version": "0.1.0",
+  "description": "Runnable, qualified reproductions and reference implementations for governed engineering patterns.",
+  "license": "Apache-2.0",
+  "private": false,
+  "type": "module",
+  "engines": { "node": ">=22.5.0" },
+  "scripts": {
+    "build": "node scripts/build-release.mjs",
+    "test": "node --test test/*.test.mjs",
+    "demo": "node packages/demo-server/src/server.mjs",
+    "quickstart": "node packages/cli/src/index.mjs quickstart",
+    "qualify": "node scripts/qualify.mjs"
+  }
+}

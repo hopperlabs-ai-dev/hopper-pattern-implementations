@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "hopper.pattern-implementation-source.v1",
+  "implementationId": "implementation:executable-stateful-harness-reference",
+  "name": "Executable stateful harness — production reference",
+  "primarySubject": { "kind": "pattern", "id": "pattern:executable-stateful-harness" },
+  "relatedSubjects": [{ "kind": "source", "id": "source:code-as-agent-harness" }],
+  "level": "reference",
+  "status": "qualified",
+  "repository": { "provider": "github", "url": "https://github.com/hopperlabs-ai-dev/hopper-pattern-implementations", "commit": "SELF", "subdirectory": "patterns/executable-stateful-harness", "license": "Apache-2.0" },
+  "entrypoints": { "poc": "poc/run.mjs", "server": "reference/server.mjs" },
+  "artifacts": { "pocDiagram": "diagrams/poc.svg", "productionDiagram": "diagrams/production.svg", "demo": "demo/index.html" },
+  "capabilities": ["typed plan", "external durable state", "checkpoint recovery", "independent verifier", "content-addressed receipts", "bounded loopback API"],
+  "verification": ["npm run qualify"],
+  "limitations": ["The in-memory reference illustrates contracts; production durability requires an admitted event store.", "The reference deliberately denies arbitrary code and network execution."]
+}

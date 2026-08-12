@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hopper.invalid/pattern-implementation-release.v1.json",
+  "title": "Pattern Implementation Release",
+  "type": "object",
+  "required": ["schemaVersion", "implementationId", "name", "primarySubject", "level", "status", "repository", "entrypoints", "artifacts", "capabilities", "verification", "limitations"],
+  "properties": {
+    "schemaVersion": { "const": "hopper.pattern-implementation-release.v1" },
+    "implementationId": { "type": "string", "pattern": "^implementation:" },
+    "name": { "type": "string", "minLength": 3 },
+    "primarySubject": {
+      "type": "object",
+      "required": ["kind", "id"],
+      "properties": { "kind": { "enum": ["source", "pattern", "claim", "synthesis"] }, "id": { "type": "string" } },
+      "additionalProperties": false
+    },
+    "relatedSubjects": { "type": "array" },
+    "level": { "enum": ["poc", "reference", "reproduction"] },
+    "status": { "enum": ["implemented", "qualified", "superseded"] },
+    "repository": { "type": "object", "required": ["provider", "url", "commit", "subdirectory", "license"] },
+    "entrypoints": { "type": "object" },
+    "artifacts": { "type": "object" },
+    "capabilities": { "type": "array", "items": { "type": "string" } },
+    "verification": { "type": "array", "items": { "type": "string" } },
+    "limitations": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

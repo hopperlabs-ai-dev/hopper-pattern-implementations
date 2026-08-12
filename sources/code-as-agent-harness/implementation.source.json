@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "hopper.pattern-implementation-source.v1",
+  "implementationId": "implementation:code-as-agent-harness-reproduction",
+  "name": "Code as Agent Harness — bounded reproduction",
+  "primarySubject": { "kind": "source", "id": "source:code-as-agent-harness" },
+  "relatedSubjects": [{ "kind": "pattern", "id": "pattern:executable-stateful-harness" }],
+  "level": "reproduction",
+  "status": "qualified",
+  "repository": { "provider": "github", "url": "https://github.com/hopperlabs-ai-dev/hopper-pattern-implementations", "commit": "SELF", "subdirectory": "sources/code-as-agent-harness", "license": "Apache-2.0" },
+  "entrypoints": { "demo": "reproduction/run.mjs" },
+  "artifacts": { "pocDiagram": "diagrams/poc.svg", "productionDiagram": "diagrams/production.svg", "demo": "demo/index.html" },
+  "capabilities": ["executable state", "inspectable event trace", "independent verification", "durable receipts"],
+  "verification": ["npm run qualify"],
+  "limitations": ["This is a paper-grounded reproduction, not the authors' official code.", "The fixed fixture demonstrates mechanisms and does not reproduce every empirical result in the paper."]
+}
