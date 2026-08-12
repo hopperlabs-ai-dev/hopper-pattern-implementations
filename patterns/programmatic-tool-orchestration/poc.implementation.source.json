@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "hopper.pattern-implementation-source.v1",
+  "implementationId": "implementation:programmatic-tool-orchestration-poc",
+  "name": "Programmatic tool orchestration — POC",
+  "primarySubject": { "kind": "pattern", "id": "pattern:programmatic-tool-orchestration" },
+  "relatedSubjects": [],
+  "level": "poc",
+  "status": "qualified",
+  "repository": { "provider": "github", "url": "https://github.com/hopperlabs-ai-dev/hopper-pattern-implementations", "commit": "SELF", "subdirectory": "patterns/programmatic-tool-orchestration", "license": "Apache-2.0" },
+  "entrypoints": { "demo": "poc/run.mjs" },
+  "artifacts": {},
+  "capabilities": ["bounded discovery", "typed plans", "step references", "receipts"],
+  "verification": ["npm run qualify"],
+  "limitations": ["Uses deterministic example operations rather than production domain tools."]
+}

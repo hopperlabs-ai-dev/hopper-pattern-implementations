@@ -7,7 +7,12 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const releaseSource = JSON.parse(await readFile(path.join(root, "releases/release.source.json"), "utf8"));
 const commit = releaseSource.implementationCommit;
 if (!/^[a-f0-9]{40}$/.test(commit)) throw new Error("Release source must pin one immutable implementation commit");
-const sources = ["sources/code-as-agent-harness/implementation.source.json", "patterns/executable-stateful-harness/implementation.source.json"];
+const sources = [
+  "sources/code-as-agent-harness/implementation.source.json",
+  "patterns/executable-stateful-harness/implementation.source.json",
+  "patterns/programmatic-tool-orchestration/poc.implementation.source.json",
+  "patterns/programmatic-tool-orchestration/reference.implementation.source.json"
+];
 const manifests = [];
 for (const source of sources) {
   const record = JSON.parse(await readFile(path.join(root, source), "utf8"));

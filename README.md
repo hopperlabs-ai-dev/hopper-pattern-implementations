@@ -19,6 +19,7 @@ fixed fixtures, and performs no network access.
 
 - Faithful, explicitly bounded reproduction of the Code as Agent Harness paper.
 - Generalized executable-stateful-harness POC and production reference.
+- Programmatic tool-orchestration POC and bounded reference API.
 - POC and production architecture diagrams as portable SVG.
 - Real execution demo with plan, checkpoint, verification, and receipts.
 - Manifest, conformance, and release compiler contracts.

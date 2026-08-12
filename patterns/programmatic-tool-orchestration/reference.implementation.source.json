@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "hopper.pattern-implementation-source.v1",
+  "implementationId": "implementation:programmatic-tool-orchestration-reference",
+  "name": "Programmatic tool orchestration — reference",
+  "primarySubject": { "kind": "pattern", "id": "pattern:programmatic-tool-orchestration" },
+  "relatedSubjects": [],
+  "level": "reference",
+  "status": "qualified",
+  "repository": { "provider": "github", "url": "https://github.com/hopperlabs-ai-dev/hopper-pattern-implementations", "commit": "SELF", "subdirectory": "patterns/programmatic-tool-orchestration", "license": "Apache-2.0" },
+  "entrypoints": { "server": "reference/server.mjs" },
+  "artifacts": {},
+  "capabilities": ["authorization before execution", "bounded HTTP input", "typed multi-step plans", "receipts"],
+  "verification": ["npm run qualify"],
+  "limitations": ["Production deployment still requires process isolation and an admitted operation catalog."]
+}

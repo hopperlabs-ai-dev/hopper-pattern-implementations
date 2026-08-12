@@ -8,7 +8,7 @@ import { qualifyManifest } from "../packages/conformance/src/index.mjs";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const tests = spawnSync(process.execPath, ["--test", "test/contracts.test.mjs", "test/harness.test.mjs"], { cwd: root, encoding: "utf8" });
 if (tests.status !== 0) throw new Error(`${tests.stdout}${tests.stderr}`);
-for (const manifest of ["sources/code-as-agent-harness/implementation.source.json", "patterns/executable-stateful-harness/implementation.source.json"]) await qualifyManifest(root, manifest, { allowSelf: true });
+for (const manifest of ["sources/code-as-agent-harness/implementation.source.json", "patterns/executable-stateful-harness/implementation.source.json", "patterns/programmatic-tool-orchestration/poc.implementation.source.json", "patterns/programmatic-tool-orchestration/reference.implementation.source.json"]) await qualifyManifest(root, manifest, { allowSelf: true });
 const build = spawnSync(process.execPath, ["scripts/build-release.mjs"], { cwd: root, encoding: "utf8" });
 if (build.status !== 0) throw new Error(`${build.stdout}${build.stderr}`);
 const server = spawn(process.execPath, ["packages/demo-server/src/server.mjs"], { cwd: root, env: { ...process.env, HOPPER_PATTERN_DEMO_PORT: "47622" }, stdio: "ignore" });
