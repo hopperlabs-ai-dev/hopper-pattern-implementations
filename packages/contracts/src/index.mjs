@@ -6,7 +6,9 @@ export const digest = (value) => `sha256:${createHash("sha256").update(typeof va
 export function validateManifest(manifest, { allowSelf = false } = {}) {
   const required = ["schemaVersion", "implementationId", "name", "primarySubject", "level", "status", "repository", "entrypoints", "artifacts", "capabilities", "verification", "limitations"];
   for (const key of required) if (!(key in manifest)) throw new Error(`Implementation manifest missing ${key}`);
-  if (manifest.schemaVersion !== "hopper.pattern-implementation-release.v1") throw new Error("Unsupported implementation manifest");
+  const admittedSchema = manifest.schemaVersion === "hopper.pattern-implementation-release.v1"
+    || (allowSelf && manifest.schemaVersion === "hopper.pattern-implementation-source.v1");
+  if (!admittedSchema) throw new Error("Unsupported implementation manifest");
   if (!manifest.implementationId.startsWith("implementation:")) throw new Error("Invalid implementation ID");
   if (!new Set(["source", "pattern", "claim", "synthesis"]).has(manifest.primarySubject.kind)) throw new Error("Invalid primary subject kind");
   if (!manifest.primarySubject.id.startsWith(`${manifest.primarySubject.kind}:`)) throw new Error("Primary subject ID does not match its kind");
