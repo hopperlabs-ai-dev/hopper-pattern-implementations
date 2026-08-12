@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "hopper.agent-automation.local-ci-policy.v1",
+  "maxConcurrency": 1,
+  "allowedExecutables": [
+    "npm"
+  ],
+  "profiles": {
+    "commit": [
+      "qualify"
+    ],
+    "push": [
+      "qualify"
+    ],
+    "full": [
+      "qualify"
+    ]
+  },
+  "retention": {
+    "maxAgeDays": 30,
+    "maxReceipts": 100,
+    "maxBytes": 134217728
+  },
+  "gates": [
+    {
+      "id": "qualify",
+      "command": [
+        "npm",
+        "run",
+        "qualify"
+      ],
+      "dependsOn": [],
+      "inputFiles": [
+        "AGENTS.md",
+        "automation-gates.json",
+        "package-lock.json",
+        "package.json"
+      ],
+      "inputRoots": [
+        "contracts",
+        "packages",
+        "patterns",
+        "releases",
+        "scripts",
+        "sources",
+        "test"
+      ],
+      "timeoutMs": 300000,
+      "maxOutputBytes": 16777216,
+      "cache": true,
+      "network": "allow"
+    }
+  ]
+}

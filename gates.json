@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "hopper.estate-gates.rules.v1",
+  "platformCustody": {
+    "authority": "hopper.secrets",
+    "appleSecureEnclaveAllowed": false,
+    "appleKeychainSecretCustodyAllowed": false,
+    "configurable": false
+  },
+  "prePush": {
+    "verifyCommand": ""
+  }
+}

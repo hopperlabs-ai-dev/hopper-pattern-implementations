@@ -1,0 +1,115 @@
+#!/bin/sh
+# >>> hopper-topology-gate (managed) >>>
+# hopper-managed-hook:v4
+set -eu
+
+if [ "${HOPPER_TOPOLOGY_TRANSACTION:-0}" = "1" ]; then
+  exit 0
+fi
+
+repository_root=$(git rev-parse --show-toplevel)
+push_input=$(mktemp "${TMPDIR:-/tmp}/hopper-pre-push.XXXXXX")
+trap 'rm -f "$push_input"' EXIT HUP INT TERM
+cat > "$push_input"
+saw_update=0
+zero=0000000000000000000000000000000000000000
+while read -r local_ref local_sha remote_ref remote_sha; do
+  saw_update=1
+  if [ "$local_ref" != "refs/heads/main" ] || [ "$remote_ref" != "refs/heads/main" ] || [ "$local_sha" = "$zero" ]; then
+    echo "Hopper main-only gate permits pushes from local main to remote main only." >&2
+    exit 2
+  fi
+  if [ "$remote_sha" != "$zero" ] && ! git merge-base --is-ancestor "$remote_sha" "$local_sha"; then
+    echo "Hopper main-only gate rejected a non-fast-forward main update." >&2
+    exit 2
+  fi
+done < "$push_input"
+if [ "$saw_update" != "1" ]; then
+  exit 0
+fi
+
+if command -v hopper-automation >/dev/null 2>&1; then
+  hopper-automation --json enforcement qualify --checkout "$repository_root" --profile full --origin pre-push --allow-main-ahead || exit 2
+else
+  local_cli="${HOPPER_AUTOMATION_CLI:-$repository_root/apps/cli/dist/index.js}"
+  if [ ! -f "$local_cli" ]; then
+    local_cli="$repository_root/../hopper-agent-automation-conventions/apps/cli/dist/index.js"
+  fi
+  if [ -f "$local_cli" ]; then
+    node "$local_cli" --json enforcement qualify --checkout "$repository_root" --profile full --origin pre-push --allow-main-ahead || exit 2
+  else
+    echo "Hopper qualification gate is installed but hopper-automation is unavailable." >&2
+    echo "Build/install the CLI before pushing." >&2
+    exit 2
+  fi
+fi
+
+# Restore Git's ref stream for every downstream managed or repository-local gate.
+exec 3< "$push_input"
+rm -f "$push_input"
+trap - EXIT HUP INT TERM
+exec 0<&3
+exec 3<&-
+# <<< hopper-topology-gate (managed) <<<
+
+# Managed by @hopper/estate-gates — content between markers is regenerated.
+# >>> estate-gates (managed) >>>
+REPO_ROOT=$(git rev-parse --show-toplevel) || exit 1
+GATE_ROOT="$REPO_ROOT/.githooks/estate-gates"
+VERIFY=$(node -e 'try{process.stdout.write(JSON.parse(require("node:fs").readFileSync(process.argv[1],"utf8")).prePush?.verifyCommand??"")}catch{}' "$REPO_ROOT/gates.json")
+SIBLINGS=$(node -e 'try{process.stdout.write((JSON.parse(require("node:fs").readFileSync(process.argv[1],"utf8")).prePush?.siblingCheckouts??[]).join(" "))}catch{}' "$REPO_ROOT/gates.json")
+
+estate_gates_verify_commit() {
+  sha=$1
+  wrap=$(mktemp -d) || return 1
+  work="$wrap/repo"
+  mkdir -p "$work"
+  if ! git archive "$sha" | tar -x -C "$work"; then rm -rf "$wrap"; return 1; fi
+  # Declared sibling checkouts (tsconfig/vite paths reaching ../<repo>)
+  # are environment: link them beside the isolated tree, read-only intent.
+  for sib in $SIBLINGS; do
+    [ -d "$REPO_ROOT/../$sib" ] && ln -s "$REPO_ROOT/../$sib" "$wrap/$sib" 2>/dev/null
+  done
+  # Dependencies are environment, not source under review. Link EVERY
+  # workspace node_modules, not just the root: monorepo packages keep
+  # their own (a web app's vite/client types live in apps/web/node_modules),
+  # and a root-only link fails builds for reasons unrelated to the commit.
+  ( cd "$REPO_ROOT" && find . -maxdepth 4 -type d -name node_modules -not -path "*/node_modules/*" ) | while read -r nm; do
+    rel=${nm#./}
+    mkdir -p "$work/$(dirname "$rel")" 2>/dev/null
+    ln -s "$REPO_ROOT/$rel" "$work/$rel" 2>/dev/null
+  done
+  rc=0
+  # Guards keep their own semantics against the real repository: their
+  # legacy-debt baseline is 'git show HEAD:<file>', which a freshly
+  # extracted tree cannot provide, and isolating them would report every
+  # grandfathered file as new debt.
+  node "$GATE_ROOT/check-console-log.mjs" "$REPO_ROOT" || rc=1
+  [ $rc -eq 0 ] && { node "$GATE_ROOT/check-file-sizes.mjs" "$REPO_ROOT" || rc=1; }
+  [ $rc -eq 0 ] && { node "$GATE_ROOT/check-platform-custody.mjs" "$REPO_ROOT" || rc=1; }
+  [ $rc -eq 0 ] && { node "$GATE_ROOT/check-agent-instructions.mjs" "$REPO_ROOT" || rc=1; }
+  if [ $rc -eq 0 ] && [ -n "$VERIFY" ]; then
+    echo "estate-gates: verifying pushed commit ${sha%%???????????????????????????????} ($VERIFY)"
+    # npm_config_verify_deps_before_run stops pnpm from trying to remove
+    # and reinstall the symlinked modules directory (its state file names
+    # the real repository path): dependencies are environment here, not
+    # source under review.
+    (cd "$work" && npm_config_verify_deps_before_run=false sh -c "$VERIFY") || rc=1
+  fi
+  rm -rf "$wrap"
+  return $rc
+}
+
+estate_gates_checked=0
+while read -r _local_ref local_sha _remote_ref _remote_sha; do
+  [ -z "$local_sha" ] && continue
+  case "$local_sha" in 0000000000000000000000000000000000000000) continue ;; esac
+  estate_gates_checked=1
+  estate_gates_verify_commit "$local_sha" || exit 1
+done
+
+# No refs on stdin (manual invocation): never pass silently — verify HEAD.
+if [ "$estate_gates_checked" -eq 0 ]; then
+  estate_gates_verify_commit "$(git rev-parse HEAD)" || exit 1
+fi
+# <<< estate-gates (managed) <<<

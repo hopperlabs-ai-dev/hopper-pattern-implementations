@@ -1,5 +1,7 @@
 # Hopper Pattern Implementations engineering policy
 
+## Authority
+
 This repository owns runnable reproductions, POCs, reference implementations,
 diagrams, simulations, fixtures, and conformance receipts for subjects curated
 by an external pattern library. It does not own source admission, generalized
