@@ -1,52 +1,58 @@
 {
   "schemaVersion": "hopper.pattern-implementation-index.v1",
   "productId": "hopper.pattern-implementations",
-  "version": "0.1.0",
-  "commit": "a2b4221815b35cfceaef161c6cee20a4a363e08a",
+  "version": "0.2.0",
+  "commit": "fd9680dcd56e036808d532490b279753d6949bd7",
   "implementations": [
     {
       "schemaVersion": "hopper.pattern-implementation-release.v1",
-      "implementationId": "implementation:code-as-agent-harness-reproduction",
-      "name": "Code as Agent Harness — bounded reproduction",
+      "implementationId": "implementation:value-migration-argument-lab",
+      "name": "Value migration argument lab",
       "primarySubject": {
-        "kind": "source",
-        "id": "source:code-as-agent-harness"
+        "kind": "thesis",
+        "id": "thesis:value-migration-under-cheap-cognition"
       },
       "relatedSubjects": [
         {
-          "kind": "pattern",
-          "id": "pattern:executable-stateful-harness"
+          "kind": "model",
+          "id": "model:value-migration-lab"
         }
       ],
-      "level": "reproduction",
+      "level": "reference",
       "status": "qualified",
       "repository": {
         "provider": "github",
         "url": "https://github.com/hopperlabs-ai-dev/hopper-pattern-implementations",
-        "commit": "a2b4221815b35cfceaef161c6cee20a4a363e08a",
-        "subdirectory": "sources/code-as-agent-harness",
+        "commit": "fd9680dcd56e036808d532490b279753d6949bd7",
+        "subdirectory": "ideas/value-migration-under-cheap-cognition",
         "license": "Apache-2.0"
       },
       "entrypoints": {
-        "demo": "reproduction/run.mjs"
-      },
-      "artifacts": {
-        "pocDiagram": "diagrams/poc.svg",
-        "productionDiagram": "diagrams/production.svg",
+        "evaluation": "eval/run.mjs",
         "demo": "demo/index.html"
       },
+      "artifacts": {
+        "fixture": "fixture.json",
+        "demo": "demo/index.html",
+        "demoScript": "demo/app.js",
+        "demoStyles": "demo/styles.css"
+      },
       "capabilities": [
-        "executable state",
-        "inspectable event trace",
-        "independent verification",
-        "durable receipts"
+        "human-readable argument graph",
+        "Datalog-style forward chaining",
+        "assumption rejection",
+        "falsifier activation",
+        "adversarial attack inventory",
+        "deterministic evaluation receipts"
       ],
       "verification": [
-        "npm run qualify"
+        "npm run qualify",
+        "node ideas/value-migration-under-cheap-cognition/eval/run.mjs"
       ],
       "limitations": [
-        "This is a paper-grounded reproduction, not the authors' official code.",
-        "The fixed fixture demonstrates mechanisms and does not reproduce every empirical result in the paper."
+        "The Key Pattern Library remains the knowledge authority; this repository carries a pinned read-only snapshot.",
+        "Passing scenarios validate declared inference behavior, not the empirical truth of the economic thesis.",
+        "Scientific checks still require external data, causal identification, and human review."
       ]
     },
     {
@@ -68,7 +74,7 @@
       "repository": {
         "provider": "github",
         "url": "https://github.com/hopperlabs-ai-dev/hopper-pattern-implementations",
-        "commit": "a2b4221815b35cfceaef161c6cee20a4a363e08a",
+        "commit": "fd9680dcd56e036808d532490b279753d6949bd7",
         "subdirectory": "patterns/executable-stateful-harness",
         "license": "Apache-2.0"
       },
@@ -111,7 +117,7 @@
       "repository": {
         "provider": "github",
         "url": "https://github.com/hopperlabs-ai-dev/hopper-pattern-implementations",
-        "commit": "a2b4221815b35cfceaef161c6cee20a4a363e08a",
+        "commit": "fd9680dcd56e036808d532490b279753d6949bd7",
         "subdirectory": "patterns/programmatic-tool-orchestration",
         "license": "Apache-2.0"
       },
@@ -146,7 +152,7 @@
       "repository": {
         "provider": "github",
         "url": "https://github.com/hopperlabs-ai-dev/hopper-pattern-implementations",
-        "commit": "a2b4221815b35cfceaef161c6cee20a4a363e08a",
+        "commit": "fd9680dcd56e036808d532490b279753d6949bd7",
         "subdirectory": "patterns/programmatic-tool-orchestration",
         "license": "Apache-2.0"
       },
@@ -166,7 +172,52 @@
       "limitations": [
         "Production deployment still requires process isolation and an admitted operation catalog."
       ]
+    },
+    {
+      "schemaVersion": "hopper.pattern-implementation-release.v1",
+      "implementationId": "implementation:code-as-agent-harness-reproduction",
+      "name": "Code as Agent Harness — bounded reproduction",
+      "primarySubject": {
+        "kind": "source",
+        "id": "source:code-as-agent-harness"
+      },
+      "relatedSubjects": [
+        {
+          "kind": "pattern",
+          "id": "pattern:executable-stateful-harness"
+        }
+      ],
+      "level": "reproduction",
+      "status": "qualified",
+      "repository": {
+        "provider": "github",
+        "url": "https://github.com/hopperlabs-ai-dev/hopper-pattern-implementations",
+        "commit": "fd9680dcd56e036808d532490b279753d6949bd7",
+        "subdirectory": "sources/code-as-agent-harness",
+        "license": "Apache-2.0"
+      },
+      "entrypoints": {
+        "demo": "reproduction/run.mjs"
+      },
+      "artifacts": {
+        "pocDiagram": "diagrams/poc.svg",
+        "productionDiagram": "diagrams/production.svg",
+        "demo": "demo/index.html"
+      },
+      "capabilities": [
+        "executable state",
+        "inspectable event trace",
+        "independent verification",
+        "durable receipts"
+      ],
+      "verification": [
+        "npm run qualify"
+      ],
+      "limitations": [
+        "This is a paper-grounded reproduction, not the authors' official code.",
+        "The fixed fixture demonstrates mechanisms and does not reproduce every empirical result in the paper."
+      ]
     }
   ],
-  "digest": "sha256:60094bf5a185244dae3f17b99c805bd1fb72cebdf57f707ff002090ce223a601"
+  "digest": "sha256:79efecc98acf04410cedf9a2aa66adcbec3b20f5d85fde1691c7db9ad2e9b702"
 }
