@@ -7,4 +7,6 @@ if (process.argv[2] !== "quickstart") throw new Error("Usage: pattern-implementa
 for (const script of ["sources/code-as-agent-harness/reproduction/run.mjs", "patterns/executable-stateful-harness/poc/run.mjs", "patterns/programmatic-tool-orchestration/poc/run.mjs"]) {
   const run = spawnSync(process.execPath, [script], { cwd: root, stdio: "inherit" }); if (run.status !== 0) process.exit(run.status || 1);
 }
+const idea = spawnSync(process.execPath, ["ideas/value-migration-under-cheap-cognition/eval/run.mjs"], { cwd: root, stdio: "inherit" });
+if (idea.status !== 0) process.exit(idea.status || 1);
 console.log("\nQualified demos: npm run demo  # http://127.0.0.1:47620");

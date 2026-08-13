@@ -11,7 +11,7 @@
     "primarySubject": {
       "type": "object",
       "required": ["kind", "id"],
-      "properties": { "kind": { "enum": ["source", "pattern", "claim", "synthesis"] }, "id": { "type": "string" } },
+      "properties": { "kind": { "enum": ["source", "pattern", "claim", "synthesis", "thesis", "model"] }, "id": { "type": "string" } },
       "additionalProperties": false
     },
     "relatedSubjects": { "type": "array" },

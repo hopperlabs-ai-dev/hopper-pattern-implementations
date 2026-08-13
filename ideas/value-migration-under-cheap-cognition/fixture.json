@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "hopper.idea-demo-fixture.v1",
+  "authority": {
+    "repository": "https://github.com/hopperlabs-ai-dev/hopper-key-pattern-library",
+    "commit": "96bddd85a2d56575065105dc98a44a3e17024e0d",
+    "argumentPath": "arguments/records/value-migration-under-cheap-cognition.json",
+    "formalPath": "formal/records/value-migration-under-cheap-cognition.json",
+    "assessmentPath": "assessments/ideas/value-migration-under-cheap-cognition.json",
+    "role": "Pinned read-only snapshot; the Key Pattern Library remains the knowledge authority."
+  },
+  "thesis": {
+    "id": "thesis:value-migration-under-cheap-cognition",
+    "title": "Value migration under cheap cognition",
+    "summary": "As AI lowers some cognitive-execution costs, differentiated realized value may move toward selection, judgment, verification, accountability, trust, distribution, and scarce human attention.",
+    "status": "candidate",
+    "reviewState": "review-required"
+  },
+  "argument": {
+    "propositions": [
+      {"id":"p1-bounded-human-capacity","code":"P1","kind":"premise","title":"Human capacity is bounded","statement":"Human time, bodily capacity, and attention remain finite while generated output can expand.","dependsOn":[]},
+      {"id":"p2-human-coordination-friction","code":"P2","kind":"premise","title":"Coordination has friction","statement":"Multi-person work can introduce context loss, misalignment, compromise, politics, and drift.","dependsOn":[]},
+      {"id":"p3-ai-reduces-some-costs","code":"P3","kind":"premise","title":"AI reduces some execution costs","statement":"AI can provide bounded cognitive execution while retaining an operator's context and objective.","dependsOn":[]},
+      {"id":"ic1-production-unit-shrinks","code":"IC1","kind":"intermediate-conclusion","title":"The minimum production unit can shrink","statement":"Lower context-transfer and execution costs can reduce the humans needed in a cognitive-production unit.","dependsOn":["p2-human-coordination-friction","p3-ai-reduces-some-costs"]},
+      {"id":"c1-company-shaped-work","code":"C1","kind":"major-conclusion","title":"One operator can perform company-shaped work","statement":"One accountable operator using agents can execute bundles of work formerly associated with multi-person organizations.","dependsOn":["ic1-production-unit-shrinks"]},
+      {"id":"q1-coordination-is-not-effectiveness","code":"Q1","kind":"qualification","title":"Lower coordination is not total effectiveness","statement":"Solo-agent firms may lose independent criticism, diverse knowledge, redundancy, legitimacy, and resilience.","dependsOn":["c1-company-shaped-work"]},
+      {"id":"ic2-output-abundance","code":"IC2","kind":"intermediate-conclusion","title":"Output supply expands","statement":"Inexpensive cognitive execution increases the supply of competent products, content, features, and possible actions.","dependsOn":["p3-ai-reduces-some-costs","c1-company-shaped-work"]},
+      {"id":"ic3-execution-less-distinctive","code":"IC3","kind":"intermediate-conclusion","title":"Execution becomes less distinctive","statement":"Another competent implementation differentiates less when comparable execution is broadly available.","dependsOn":["ic2-output-abundance"]},
+      {"id":"ic4-selection-evaluation-distribution","code":"IC4","kind":"intermediate-conclusion","title":"Choice and verification burdens grow","statement":"More possible outputs create selection, evaluation, verification, and distribution work.","dependsOn":["ic2-output-abundance"]},
+      {"id":"p4-accountability-terminus","code":"P4","kind":"premise","title":"Consequential action needs an accountable terminus","statement":"Downside, liability, and oversight duties still require an accountable person or legal entity.","dependsOn":[]},
+      {"id":"p5-judgment-varies","code":"P5","kind":"premise","title":"Judgment quality varies","statement":"People and organizations differ in domain knowledge, taste, goal selection, and fitness recognition.","dependsOn":[]},
+      {"id":"p6-trust-affects-attention","code":"P6","kind":"premise","title":"Trust directs scarce attention","statement":"When people cannot inspect every output, reputation affects consideration and adoption.","dependsOn":[]},
+      {"id":"ic5-good-selectors-gain-leverage","code":"IC5","kind":"intermediate-conclusion","title":"Good selectors gain leverage","statement":"When decisions control more downstream execution, good judgment produces more upside and poor judgment more harm.","dependsOn":["ic4-selection-evaluation-distribution","p5-judgment-varies"]},
+      {"id":"ic6-attention-bottleneck","code":"IC6","kind":"intermediate-conclusion","title":"Attention becomes a stronger bottleneck","statement":"If supply grows faster than attention, reaching a willing audience constrains value more strongly.","dependsOn":["p1-bounded-human-capacity","ic2-output-abundance","p6-trust-affects-attention"]},
+      {"id":"ic7-trust-as-filter","code":"IC7","kind":"intermediate-conclusion","title":"Trust becomes a filter","statement":"Trust lowers discovery and verification burdens by filtering which producers deserve attention.","dependsOn":["ic6-attention-bottleneck"]},
+      {"id":"ic8-accountability-and-verification","code":"IC8","kind":"intermediate-conclusion","title":"Verification and accountability become complements","statement":"More consequential machine execution raises the need to verify outcomes and preserve accountable intervention.","dependsOn":["ic2-output-abundance","p4-accountability-terminus"]},
+      {"id":"ic9-complements-gain-demand","code":"IC9","kind":"intermediate-conclusion","title":"Complement demand can rise","statement":"Selection, verification, accountability, trust, distribution, and attention are consumed with cognitive output.","dependsOn":["ic4-selection-evaluation-distribution","ic5-good-selectors-gain-leverage","ic7-trust-as-filter","ic8-accountability-and-verification"]},
+      {"id":"c2-value-migrates","code":"C2","kind":"major-conclusion","title":"Differentiated value may migrate","statement":"When execution becomes cheap, differentiated realized value may move toward the scarce complements.","dependsOn":["ic3-execution-less-distinctive","ic9-complements-gain-demand"]},
+      {"id":"i1-firm-boundary-is-task-dependent","code":"I1","kind":"implication","title":"Firm boundaries remain task-dependent","statement":"Compare organization designs across coordination, diversity, resilience, legitimacy, and liability.","dependsOn":["c1-company-shaped-work","q1-coordination-is-not-effectiveness"]}
+    ],
+    "assumptions": [
+      {"id":"a1","statement":"AI capabilities remain broadly accessible rather than becoming an exclusive input."},
+      {"id":"a2","statement":"The marginal cost of useful cognitive execution continues to decline."},
+      {"id":"a3","statement":"Human attention does not expand proportionally with generated output."},
+      {"id":"a4","statement":"Responsibility for consequential decisions cannot be delegated entirely to software."},
+      {"id":"a5","statement":"Selection and verification quality remain meaningfully heterogeneous."}
+    ],
+    "falsifiers": [
+      {"id":"f1","statement":"AI reliably performs strategic selection better than accountable experts across consequential settings.","challenges":["p5-judgment-varies","ic5-good-selectors-gain-leverage","c2-value-migrates"]},
+      {"id":"f2","statement":"Large increases in output do not increase discovery, verification, or trust costs.","challenges":["ic4-selection-evaluation-distribution","ic6-attention-bottleneck","ic7-trust-as-filter","ic9-complements-gain-demand"]},
+      {"id":"f3","statement":"Trust and audience relationships cease to affect adoption, retention, or willingness to pay.","challenges":["p6-trust-affects-attention","ic7-trust-as-filter","c2-value-migrates"]},
+      {"id":"f4","statement":"Human teams retain no measurable advantage in criticism, diversity, resilience, or error detection.","challenges":["q1-coordination-is-not-effectiveness","i1-firm-boundary-is-task-dependent"]},
+      {"id":"f5","statement":"AI execution costs fail to decline or productivity stays negative across most important tasks.","challenges":["p3-ai-reduces-some-costs","ic1-production-unit-shrinks","ic2-output-abundance","c2-value-migrates"]}
+    ]
+  },
+  "program": {
+    "semantics": "open-world-forward-chaining",
+    "rules": [
+      {"conclusion":"p1-bounded-human-capacity","antecedents":[],"requiredAssumptions":[]},
+      {"conclusion":"p2-human-coordination-friction","antecedents":[],"requiredAssumptions":[]},
+      {"conclusion":"p3-ai-reduces-some-costs","antecedents":[],"requiredAssumptions":["a2"]},
+      {"conclusion":"ic1-production-unit-shrinks","antecedents":["p2-human-coordination-friction","p3-ai-reduces-some-costs"],"requiredAssumptions":[]},
+      {"conclusion":"c1-company-shaped-work","antecedents":["ic1-production-unit-shrinks"],"requiredAssumptions":[]},
+      {"conclusion":"q1-coordination-is-not-effectiveness","antecedents":["c1-company-shaped-work"],"requiredAssumptions":[]},
+      {"conclusion":"ic2-output-abundance","antecedents":["p3-ai-reduces-some-costs","c1-company-shaped-work"],"requiredAssumptions":["a2"]},
+      {"conclusion":"ic3-execution-less-distinctive","antecedents":["ic2-output-abundance"],"requiredAssumptions":["a1"]},
+      {"conclusion":"ic4-selection-evaluation-distribution","antecedents":["ic2-output-abundance"],"requiredAssumptions":[]},
+      {"conclusion":"p4-accountability-terminus","antecedents":[],"requiredAssumptions":["a4"]},
+      {"conclusion":"p5-judgment-varies","antecedents":[],"requiredAssumptions":["a5"]},
+      {"conclusion":"p6-trust-affects-attention","antecedents":[],"requiredAssumptions":[]},
+      {"conclusion":"ic5-good-selectors-gain-leverage","antecedents":["ic4-selection-evaluation-distribution","p5-judgment-varies"],"requiredAssumptions":["a5"]},
+      {"conclusion":"ic6-attention-bottleneck","antecedents":["p1-bounded-human-capacity","ic2-output-abundance","p6-trust-affects-attention"],"requiredAssumptions":["a3"]},
+      {"conclusion":"ic7-trust-as-filter","antecedents":["ic6-attention-bottleneck"],"requiredAssumptions":["a3"]},
+      {"conclusion":"ic8-accountability-and-verification","antecedents":["ic2-output-abundance","p4-accountability-terminus"],"requiredAssumptions":["a4"]},
+      {"conclusion":"ic9-complements-gain-demand","antecedents":["ic4-selection-evaluation-distribution","ic5-good-selectors-gain-leverage","ic7-trust-as-filter","ic8-accountability-and-verification"],"requiredAssumptions":[]},
+      {"conclusion":"c2-value-migrates","antecedents":["ic3-execution-less-distinctive","ic9-complements-gain-demand"],"requiredAssumptions":["a1","a2","a3","a4","a5"]},
+      {"conclusion":"i1-firm-boundary-is-task-dependent","antecedents":["c1-company-shaped-work","q1-coordination-is-not-effectiveness"],"requiredAssumptions":[]}
+    ],
+    "queries": [
+      {"propositionId":"c1-company-shaped-work","label":"Company-shaped work"},
+      {"propositionId":"c2-value-migrates","label":"Value migration"},
+      {"propositionId":"i1-firm-boundary-is-task-dependent","label":"Task-dependent firm boundary"}
+    ]
+  },
+  "attacks": [
+    {"id":"capability-concentration","severity":"high","targets":["ic3-execution-less-distinctive","c2-value-migrates"],"challenge":"Scarce or vertically controlled frontier capability may preserve execution rents."},
+    {"id":"no-productivity-gain","severity":"high","targets":["p3-ai-reduces-some-costs","c2-value-migrates"],"challenge":"Review, correction, and failure costs may erase measured productivity gains."},
+    {"id":"attention-scales","severity":"high","targets":["ic6-attention-bottleneck","c2-value-migrates"],"challenge":"Machine filtering and delegated consumption could expand effective attention."},
+    {"id":"accountability-commoditizes","severity":"high","targets":["p4-accountability-terminus","c2-value-migrates"],"challenge":"Insurance or certification could commoditize accountable operation."},
+    {"id":"judgment-converges","severity":"high","targets":["p5-judgment-varies","c2-value-migrates"],"challenge":"Selection quality may converge if models outperform experts."},
+    {"id":"demand-is-not-value-capture","severity":"high","targets":["ic9-complements-gain-demand","c2-value-migrates"],"challenge":"Complement demand can rise without differentiated value capture."},
+    {"id":"firm-boundary-confounders","severity":"medium","targets":["c1-company-shaped-work","i1-firm-boundary-is-task-dependent"],"challenge":"Regulation, outsourcing, taxes, or sector mix may explain solo-firm changes."}
+  ],
+  "scenarios": [
+    {"id":"baseline","title":"All assumptions active","input":{},"expectedQueries":{"c1-company-shaped-work":"derived","c2-value-migrates":"derived","i1-firm-boundary-is-task-dependent":"derived"}},
+    {"id":"no-cheap-cognition","title":"Useful cognition does not get cheaper","input":{"rejectedAssumptions":["a2"]},"expectedQueries":{"c1-company-shaped-work":"blocked","c2-value-migrates":"blocked","i1-firm-boundary-is-task-dependent":"blocked"}},
+    {"id":"attention-scales","title":"Effective attention scales","input":{"rejectedAssumptions":["a3"]},"expectedQueries":{"c1-company-shaped-work":"derived","c2-value-migrates":"blocked","i1-firm-boundary-is-task-dependent":"derived"}},
+    {"id":"no-complement-cost","title":"Supply does not raise discovery costs","input":{"triggeredFalsifiers":["f2"]},"expectedQueries":{"c1-company-shaped-work":"derived","c2-value-migrates":"blocked","i1-firm-boundary-is-task-dependent":"derived"}},
+    {"id":"teams-have-no-advantage","title":"Teams retain no measurable advantage","input":{"triggeredFalsifiers":["f4"]},"expectedQueries":{"c1-company-shaped-work":"derived","c2-value-migrates":"derived","i1-firm-boundary-is-task-dependent":"blocked"}}
+  ]
+}

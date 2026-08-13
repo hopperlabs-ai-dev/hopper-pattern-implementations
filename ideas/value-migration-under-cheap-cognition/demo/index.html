@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Value Migration Argument Lab</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/ideas/value-migration/styles.css">
+  </head>
+  <body>
+    <main>
+      <header class="hero">
+        <p class="eyebrow">Executable idea demonstration</p>
+        <h1>What remains valuable when anyone can build anything?</h1>
+        <p id="summary">Loading governed argument snapshot…</p>
+        <div class="boundary">This demo tests the declared inference structure. It does not certify that the thesis is empirically true.</div>
+      </header>
+      <section class="workbench">
+        <aside>
+          <div class="control-head"><div><p class="eyebrow">Counterfactual controls</p><h2>Break the argument</h2></div><button id="reset" type="button">Reset</button></div>
+          <h3>Reject assumptions</h3><div id="assumptions" class="controls"></div>
+          <h3>Trigger falsifiers</h3><div id="falsifiers" class="controls"></div>
+          <button id="run" class="run" type="button">Run argument</button>
+        </aside>
+        <section class="results">
+          <p class="eyebrow">Decision queries</p><div id="queries" class="queries"></div>
+          <div class="result-tabs"><button data-tab="flow" aria-pressed="true">Argument flow</button><button data-tab="trace" aria-pressed="false">Datalog trace</button><button data-tab="attacks" aria-pressed="false">Adversarial attacks</button></div>
+          <div id="flow" class="tab-panel"></div>
+          <pre id="trace" class="tab-panel" hidden></pre>
+          <div id="attacks" class="tab-panel attack-grid" hidden></div>
+        </section>
+      </section>
+      <footer><span id="receipt">No run receipt yet.</span><a id="authority" target="_blank" rel="noreferrer">Open pinned knowledge authority ↗</a></footer>
+    </main>
+    <script type="module" src="/ideas/value-migration/app.js"></script>
+  </body>
+</html>

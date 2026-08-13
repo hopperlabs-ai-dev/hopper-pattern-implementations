@@ -1,7 +1,7 @@
 {
   "name": "@hopperlabs/pattern-implementations",
-  "version": "0.1.0",
-  "description": "Runnable, qualified reproductions and reference implementations for governed engineering patterns.",
+  "version": "0.2.0",
+  "description": "Runnable, qualified demos, reproductions, and reference implementations for governed ideas and engineering patterns.",
   "license": "Apache-2.0",
   "private": false,
   "type": "module",

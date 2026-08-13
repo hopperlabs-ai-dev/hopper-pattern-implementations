@@ -3,16 +3,22 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { runHarness } from "../../harness-runtime/src/index.mjs";
+import { evaluateIdea } from "../../idea-reasoning-runtime/src/index.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 const port = Number(process.env.HOPPER_PATTERN_DEMO_PORT || 47620);
 if (!Number.isInteger(port) || port < 1024 || port > 65535) throw new Error("Invalid demo port");
+const ideaFixture = JSON.parse(await readFile(path.join(root, "ideas/value-migration-under-cheap-cognition/fixture.json"), "utf8"));
 const assets = new Map([
   ["/", ["packages/demo-server/src/index.html", "text/html; charset=utf-8"]],
   ["/app.js", ["packages/demo-server/src/app.js", "text/javascript; charset=utf-8"]],
   ["/styles.css", ["packages/demo-server/src/styles.css", "text/css; charset=utf-8"]],
+  ["/favicon.svg", ["packages/demo-server/src/favicon.svg", "image/svg+xml"]],
   ["/subjects/source/code-as-agent-harness", ["sources/code-as-agent-harness/demo/index.html", "text/html; charset=utf-8"]],
   ["/subjects/pattern/executable-stateful-harness", ["patterns/executable-stateful-harness/demo/index.html", "text/html; charset=utf-8"]],
+  ["/subjects/thesis/value-migration-under-cheap-cognition", ["ideas/value-migration-under-cheap-cognition/demo/index.html", "text/html; charset=utf-8"]],
+  ["/ideas/value-migration/app.js", ["ideas/value-migration-under-cheap-cognition/demo/app.js", "text/javascript; charset=utf-8"]],
+  ["/ideas/value-migration/styles.css", ["ideas/value-migration-under-cheap-cognition/demo/styles.css", "text/css; charset=utf-8"]],
   ["/diagrams/source/poc.svg", ["sources/code-as-agent-harness/diagrams/poc.svg", "image/svg+xml"]],
   ["/diagrams/source/production.svg", ["sources/code-as-agent-harness/diagrams/production.svg", "image/svg+xml"]],
   ["/diagrams/pattern/poc.svg", ["patterns/executable-stateful-harness/diagrams/poc.svg", "image/svg+xml"]],
@@ -42,6 +48,12 @@ const server = http.createServer(async (request, response) => {
       const result = await runHarness({ task: "Filter and summarize admitted values", fixture: { values: [2, 8, 13, 21], minimum: 8, expected: { count: 3, sum: 42 } }, failStep });
       return send(response, 200, JSON.stringify(result));
     }
+    if (request.method === "POST" && url.pathname === "/api/ideas/value-migration/evaluate") {
+      const chunks = []; let bytes = 0;
+      for await (const chunk of request) { bytes += chunk.length; if (bytes > 16_384) return send(response, 413, JSON.stringify({ error: "input-too-large" })); chunks.push(chunk); }
+      return send(response, 200, JSON.stringify(evaluateIdea(ideaFixture, JSON.parse(Buffer.concat(chunks).toString("utf8") || "{}"))));
+    }
+    if (request.method === "GET" && url.pathname === "/api/ideas/value-migration/fixture") return send(response, 200, JSON.stringify(ideaFixture));
     if (request.method !== "GET") return send(response, 405, JSON.stringify({ error: "method-not-allowed" }));
     const asset = assets.get(url.pathname);
     if (!asset) return send(response, 404, JSON.stringify({ error: "not-found" }));

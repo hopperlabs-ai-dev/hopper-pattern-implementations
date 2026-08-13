@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "hopper.pattern-implementation-source.v1",
+  "implementationId": "implementation:value-migration-argument-lab",
+  "name": "Value migration argument lab",
+  "primarySubject": {"kind":"thesis","id":"thesis:value-migration-under-cheap-cognition"},
+  "relatedSubjects": [{"kind":"model","id":"model:value-migration-lab"}],
+  "level": "reference",
+  "status": "qualified",
+  "repository": {"provider":"github","url":"https://github.com/hopperlabs-ai-dev/hopper-pattern-implementations","commit":"SELF","subdirectory":"ideas/value-migration-under-cheap-cognition","license":"Apache-2.0"},
+  "entrypoints": {"evaluation":"eval/run.mjs","demo":"demo/index.html"},
+  "artifacts": {"fixture":"fixture.json","demo":"demo/index.html","demoScript":"demo/app.js","demoStyles":"demo/styles.css"},
+  "capabilities": ["human-readable argument graph","Datalog-style forward chaining","assumption rejection","falsifier activation","adversarial attack inventory","deterministic evaluation receipts"],
+  "verification": ["npm run qualify","node ideas/value-migration-under-cheap-cognition/eval/run.mjs"],
+  "limitations": ["The Key Pattern Library remains the knowledge authority; this repository carries a pinned read-only snapshot.","Passing scenarios validate declared inference behavior, not the empirical truth of the economic thesis.","Scientific checks still require external data, causal identification, and human review."]
+}

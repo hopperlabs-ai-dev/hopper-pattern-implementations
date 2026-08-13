@@ -10,10 +10,13 @@ export function validateManifest(manifest, { allowSelf = false } = {}) {
     || (allowSelf && manifest.schemaVersion === "hopper.pattern-implementation-source.v1");
   if (!admittedSchema) throw new Error("Unsupported implementation manifest");
   if (!manifest.implementationId.startsWith("implementation:")) throw new Error("Invalid implementation ID");
-  if (!new Set(["source", "pattern", "claim", "synthesis"]).has(manifest.primarySubject.kind)) throw new Error("Invalid primary subject kind");
+  if (!new Set(["source", "pattern", "claim", "synthesis", "thesis", "model"]).has(manifest.primarySubject.kind)) throw new Error("Invalid primary subject kind");
   if (!manifest.primarySubject.id.startsWith(`${manifest.primarySubject.kind}:`)) throw new Error("Primary subject ID does not match its kind");
   if (manifest.repository.provider !== "github") throw new Error("Only GitHub repository bindings are currently admitted");
   if (!/^https:\/\/github\.com\//.test(manifest.repository.url)) throw new Error("Repository must be an HTTPS GitHub URL");
   if (!(allowSelf && manifest.repository.commit === "SELF") && !/^[a-f0-9]{40}$/.test(manifest.repository.commit)) throw new Error("Repository commit must be immutable");
+  for (const subject of manifest.relatedSubjects || []) {
+    if (!new Set(["source", "pattern", "claim", "synthesis", "thesis", "model"]).has(subject.kind) || !subject.id.startsWith(`${subject.kind}:`)) throw new Error("Invalid related subject");
+  }
   return manifest;
 }
