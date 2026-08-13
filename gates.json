@@ -7,6 +7,6 @@
     "configurable": false
   },
   "prePush": {
-    "verifyCommand": ""
+    "verifyCommand": "npm run qualify"
   }
 }

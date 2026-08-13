@@ -94,7 +94,7 @@ estate_gates_verify_commit() {
     # and reinstall the symlinked modules directory (its state file names
     # the real repository path): dependencies are environment here, not
     # source under review.
-    (cd "$work" && npm_config_verify_deps_before_run=false sh -c "$VERIFY") || rc=1
+    (cd "$work" && npm_config_verify_deps_before_run=false pnpm_config_verify_deps_before_run=false sh -c "$VERIFY") || rc=1
   fi
   rm -rf "$wrap"
   return $rc
