@@ -1,10 +1,3 @@
 #!/bin/sh
-# Managed by @hopper/estate-gates — content between markers is regenerated.
-# >>> estate-gates (managed) >>>
-REPO_ROOT=$(git rev-parse --show-toplevel) || exit 1
-GATE_ROOT="$REPO_ROOT/.githooks/estate-gates"
-node "$GATE_ROOT/check-console-log.mjs" "$REPO_ROOT" || exit 1
-node "$GATE_ROOT/check-file-sizes.mjs" "$REPO_ROOT" || exit 1
-node "$GATE_ROOT/check-platform-custody.mjs" "$REPO_ROOT" || exit 1
-node "$GATE_ROOT/check-agent-instructions.mjs" "$REPO_ROOT" || exit 1
-# <<< estate-gates (managed) <<<
+# Managed by hopper-gates (Gates Management). The hooks this replaced are in .githooks/archive/20261007T091914.
+exec "$(command -v hopper-gates-hook || printf '%s' "$HOME/.local/bin/hopper-gates-hook")" pre-commit "$@"
